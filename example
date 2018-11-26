@@ -1,0 +1,482 @@
+// Susumuoti paskutinius (didžiausius) tris skaičius iš intervalo [1; 100].
+public class nd2_Main {
+    public static void main(String[] args){
+        int count = 0; int total = 0;
+        System.out.print("Paskutiniu skaiciu: ");
+        for (int i = 100; i >= 1; i--){
+            if (count == 3){
+                break;
+            }
+            count++;
+            total += i;
+//            if(true){continue;}
+            System.out.print(i + " ");
+        }
+        System.out.print("suma yra " + total);
+    }
+}
+
+// Duoti 2 int masyvai. Parašyti kodą, kuris sudeda jų elementus į vieną bendrą masyvą.
+// Astspausdinti duotų masyvų ir rezultato reikšmes. Spausdinimui panaudoti
+// 3 skirtingus ciklus: while, for, foreach (for su dvitaškiu).
+import java.util.ArrayList;
+public class ndBONUS_Main {
+    public static void main(String[] args){
+        int sum = 0;
+        int[] arr1 = new int[] {1, 2, 3};
+        int[] arr2 = new int[] {4, 5, 6};
+        ArrayList<Integer> arr3 = new ArrayList<>(arr1.length + arr2.length);
+        if (arr1.length != 0 || arr2.length != 0) {
+            for (int i : arr1) {
+                arr3.add(i);
+            }
+            for (int j : arr2) {
+                arr3.add(j);
+            }
+            System.out.println("Elements: " + arr3);
+            for (int k : arr3) {
+                sum += k;
+            }
+            System.out.print("Sum is " + sum);
+        }
+    }
+}
+
+public class nd2_Main {
+    public static void main(String[] args){
+        int[] a = {5, 6, 10, 15, 8, 4};
+        int[] b = {8, 5, 3};
+        int sumA = 0; int sumB = 0;
+        double avgA = 0.0; double avgB = 0.0;
+        double diff = 0.0;
+
+        for(int i : a){
+            sumA += i;
+        }
+        avgA = sumA / a.length;
+
+        for(int j : b){
+            sumB += j;
+        }
+        avgB = sumB / b.length;
+
+        if(avgA > avgB){
+            diff = avgA - avgB;
+            System.out.println("avgA is higher");
+        }else{
+            diff = avgB - avgA;
+            System.out.println("avgB is higher");
+        }
+
+        System.out.print(diff);
+    }
+}
+
+//        Duota /demo/19/automobilis?id=140
+//        Pasitikrinimui pasinaudokite https://regex101.com/
+//        1. rasti tekstą nuo pradžios iki ? (/demo/19/automobilis)
+//        2. raskite tekstą nuo ? iki galo (id=140)
+//        3. raskite tekstą iki antro / (/demo)
+//        4. raskite tekstą tarp paskutinio / ir ? (automobilis)
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class URLChopper {
+
+    public static String theString = "/demo/19/automobilis?id=140";
+
+    public static void main(String[] args) {
+        thirtyOne("[^=]*?(?=\\?)",theString); // [^=]*?(?=\?)
+        thirtyOne("([^?]*?(?=\\w\\d{2})...)",theString); // ([^?]*?(?=\w\d{2})...)
+        thirtyOne("[^\\d]+?(?=\\/)",theString); // [^\d]+?(?=\/)
+        thirtyOne("[^\\/]+?(?=\\?)",theString); // [^\/]+?(?=\?)
+    }
+
+    private static void thirtyOne(String theRegex, String s){
+        Pattern p = Pattern.compile(theRegex);
+        Matcher m = p.matcher(s);
+        while(m.find()){
+            if(m.group().length() != 0){
+                System.out.println(m.group().trim());
+            }
+        }
+}
+
+// testas patikrina ar arrayjus lygus rezultatui
+@Test
+    public void testDubling() {
+        assertEquals("[2, 4, 6]", e1.dubling(Arrays.asList(1, 2, 3)).toString());
+        assertEquals("[12, 16, 12, 16, -2]", e1.dubling(Arrays.asList(6, 8, 6, 8, -1)).toString());
+        assertEquals("[]", e1.dubling(Collections.emptyList()).toString());
+        assertNull(e1.dubling(null));
+}
+
+// testas patikrina su duotom reiksmem boolean
+@Test
+    public void love6() {
+        assertTrue(e33.love6(6, 4));
+        assertFalse(e33.love6(4, 5));
+        assertTrue(e33.love6(1, 5));
+}
+
+// testas patikrina ar dvieju array suma patenkina rezultata
+@Test
+    public void testPlusTwo() {
+        assertEquals("[1, 2, 3, 4, 7, 9, 1, 3]", Arrays.toString(e7.plusTwo(new int[]{1, 2}, new int[]{3, 4, 7, 9, 1, 3})));
+        assertEquals("[4, 2, 2, 5]", Arrays.toString(e7.plusTwo(new int[]{4}, new int[]{2, 2, 5})));
+        assertEquals("[9, 2, 1, 8, 3, 4]", Arrays.toString(e7.plusTwo(new int[]{9, 2, 1, 8}, new int[]{3, 4})));
+        assertEquals("[]", Arrays.toString(e7.plusTwo(new int[]{}, new int[]{})));
+        assertEquals("[8, 0]", Arrays.toString(e7.plusTwo(null, new int[]{8, 0})));
+        assertEquals("[1, 4]",Arrays.toString(e7.plusTwo(new int[]{1, 4}, null)));
+        assertEquals("null",Arrays.toString(e7.plusTwo(null, null)));
+}
+
+// didejimo ir mazejimo tvarva
+public static void main(String[] args) {
+        int[] arr = new int[] {-10, 0, 2, 9, -5};
+
+        System.out.println("Array elements: " + Arrays.toString(arr));
+        Arrays.sort(arr);
+        System.out.println("Sorted array elements: " + Arrays.toString(arr));
+
+        List<Integer> listArr = new LinkedList<>();
+
+        for(int li : arr){
+            listArr.add(li);
+        }
+        System.out.println("Int list elements: " + listArr);
+        Collections.sort(listArr, Collections.reverseOrder());
+        System.out.println("Int list elements in reversed order: " + listArr);
+}
+
+// int comparator
+public class AnonymousClassSortByLastnameLength {
+    public static void main(String[] args) {
+        List<Owner> oList = new ArrayList<>();
+
+        oList.add(new Owner("Carl", "Malone"));
+        oList.add(new Owner("Elizabeth", "Vroughelson"));
+        oList.add(new Owner("Caroline", "Green"));
+        oList.add(new Owner("Tom", "Edison"));
+        oList.add(new Owner("Simone", "Wherlsenson"));
+
+        Collections.sort(oList, new Comparator<Owner>() {
+            @Override
+            public int compare(Owner own1, Owner own2) {
+                return own1.getLastName().length() - own2.getLastName().length();
+            }
+        });
+
+        System.out.println(oList);
+    }
+}
+
+// array element comparator
+class InnerClassSortByCarNumbers{
+
+        public void SortedPlateAlgorythm() {
+            Owner owner = new Owner("fname", "lname");
+            List<Car> cList = new ArrayList<>();
+
+            cList.add(new Car("Toyota", AUTOMATIC, 200, owner, "KLK 102"));
+            cList.add(new Car("Opel", MANUAL, 220, owner, "HKR 223"));
+            cList.add(new Car("Audi", AUTOMATIC, 190, owner, "OKR 224"));
+            cList.add(new Car("BMW", MANUAL, 180, owner, "VDI 222"));
+            cList.add(new Car("MB", AUTOMATIC, 240, owner, "APB 172"));
+
+            List<Car> plateNumberList = new ArrayList<>();
+            System.out.println("Adding plate numbers to array ...");
+            for(Car c : cList){
+                String getNumber = "";
+                getNumber = c.getPlateNumber().substring(4, c.getPlateNumber().length());
+                plateNumberList.add(c);
+                System.out.print(getNumber + " ");
+                Collections.sort(plateNumberList, new Comparator<Car>() {
+                    @Override
+                    public int compare(Car car1, Car car2) {
+                        String c1p = car1.getPlateNumber().substring(4, car1.getPlateNumber().length());
+                        String c2p = car2.getPlateNumber().substring(4, car2.getPlateNumber().length());
+                        return c1p.compareTo(c2p);
+                    }
+                });
+            }
+            System.out.println("\nOrdered by car plate number\n" + plateNumberList);
+        }
+}
+
+// simple getter
+public class _nd2 {
+    public static void main(String[] args) {
+        Point pt = new Point(10, 2);
+        System.out.println("X: " + pt.getX() + " Y: " + pt.getY());
+    }
+}
+
+class Point{
+    private int x;
+    private int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x = x - y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y = y - x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+}
+
+// stream aritmetika
+public static void main(String[] args) {
+        int[] a = {5, 6, 10, 15, 8, 4};
+        int[] b = {8, 5, 3};
+
+        int aSuma = 0; int bSuma = 0;
+
+        aSuma += Stream.of(5, 6, 10, 15, 8, 4).mapToInt(x -> x).sum();
+        bSuma += Stream.of(8, 5, 3).mapToInt(y -> y).sum();
+
+        double avg1 = IntStream.of(a).average().getAsDouble();
+        double avg2 = IntStream.of(b).average().getAsDouble();
+        System.out.println(String.format("%.2f",avg1 - avg2));
+}
+
+// lambda ilgis string listo
+public static void main(String[] args) {
+Set<String> s = new HashSet<>();
+        s.add("ABC");s.add("defg");
+        s.add("HiJk");s.add("123456");
+        s.add("l7m81uH");s.add("9n10");
+        s.add("O0p1");s.add("2R");
+        s.add("45U");s.add("VZ670o");
+
+        s.forEach(x -> System.out.print(x + " - " + x.length() + "; "));
+        System.out.println();
+        s.stream().map(x -> x + " - " + x.length() + "; ").forEach(System.out::println);
+}
+
+
+
+
+JAVA II
+
+
+// INTELLIJ
+
+0. New Java Project;
+1. File > Project Structure > Libraries;
+2. + > From Maven...;
+3. mysql:mysql-connector-java:8.0.11;
+4. Class.forName("com.mysql.cj.jdbc.Driver");
+5. String url = "jdbc:mysql://localhost:3306/scheme_name_here?autoReconnect=true&useSSL=false";
+   String user = "user_name_here";
+   String pass = "password_here";
+6. Connection con = DriverManager.getConnection(url, user, pass);
+
+// MYSQL dalis
+Create Schema `dienynas2`;
+
+Use `dienynas2`;
+
+Create Table `studentai2`
+(`Id` INT PRIMARY KEY auto_increment,
+`vardas` varchar(50) NOT NULL,
+`pavarde` varchar(50) NOT NULL,
+`el_pastas` varchar(255));
+
+Create Table `pazymiai2`
+(`Id` INT PRIMARY KEY auto_increment,
+`studentas_id` INT NOT NULL,
+`data` DATE NOT NULL,
+`pazymys` int(2) NOT NULL);
+
+INSERT INTO `studentai2`
+(`vardas`, `pavarde`, `el_pastas`)
+VALUES ('Gediminas', 'Jonaitis', 'g.jonaitis@gmail.com'),
+('Jonas', 'Petraitis', 'j.petratis@gmail.com'),
+('Kazimieras', 'Lukšys', 'k.luksys@gmail.com'),
+('Rimas', 'Motuzas', 'r.motuza@gmail.com');
+
+INSERT INTO `pazymiai2`
+VALUES (null, 1, '2018.8.12', 10),
+(null, 2, '2018.8.12', 8),
+(null, 3, '2018.8.12', 8),
+(null, 4, '2018.8.12', 9),
+(null, 1, '2018.8.16', 9),
+(null, 2, '2018.8.16', 8),
+(null, 3, '2018.8.16', 9),
+(null, 1, '2018.8.17', 10);
+
+-- 1 punktas
+SELECT COUNT(*)
+FROM `studentai2`;
+
+-- 2 punktas
+SELECT studentai2.vardas, studentai2.pavarde, pazymiai2.pazymys
+FROM studentai2
+JOIN pazymiai2
+ON studentai2.Id = pazymiai2.studentas_id
+WHERE pazymiai2.`data` = '2018.08.12';
+
+-- 3 punktas
+SELECT studentai2.vardas v, studentai2.pavarde p, AVG(pazymiai2.pazymys)
+FROM studentai2
+JOIN pazymiai2
+ON studentai2.Id = pazymiai2.studentas_id
+GROUP BY v, p;
+
+-- 4 punktas
+SELECT studentai2.vardas v, studentai2.pavarde p, AVG(pazymiai2.pazymys) AS `avg`
+FROM studentai2
+JOIN pazymiai2
+ON studentai2.Id = pazymiai2.studentas_id
+GROUP BY v, p
+HAVING `avg` > 9;
+
+-- 5 punktas
+SELECT studentai2.el_pastas el
+FROM studentai2
+JOIN pazymiai2
+ON studentai2.Id = pazymiai2.studentas_id
+GROUP BY el
+HAVING COUNT(pazymiai2.pazymys) < 2;
+
+// JAVA dalis
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        List<Studentas> kolekcija = new LinkedList<>();
+        kolekcija = uzkrautiDuomenis();
+
+        System.out.println("1 java punktas");
+        for (Studentas studentas : kolekcija){
+            System.out.println(studentas);
+        }
+    }
+
+    public static List<Studentas> uzkrautiDuomenis() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:mysql://localhost:3306/dienynas2?autoReconnect=true&useSSL=false";
+        String user = "pauleo";
+        String pass = "CicinasRytis147";
+        // mysql commandline -> set password for root@localhost='';
+
+        Connection con = DriverManager.getConnection(url, user, pass);
+        PreparedStatement st = con.prepareStatement(
+                "SELECT studentai2.Id, studentai2.vardas, studentai2.pavarde, " +
+                        "studentai2.el_pastas, pazymiai2.pazymys " +
+                        "FROM studentai2 " +
+                        "JOIN pazymiai2 " +
+                        "ON studentai2.Id = pazymiai2.studentas_id"
+        );
+        ResultSet rs = st.executeQuery();
+        List<Studentas> tarpinis = new LinkedList<>();
+
+        while(rs.next()){
+            int id = rs.getInt(1);
+            String vardas = rs.getString(2);
+            String pavarde = rs.getString(3);
+            String elPastas = rs.getString(4);
+
+            Studentas stud = tarpinis.stream()
+                    .filter(a -> a.getId() == id)
+                    .findAny()
+                    .orElseGet(() -> {
+                        Studentas stu = new Studentas(id, vardas, pavarde, elPastas);
+                        tarpinis.add(stu);
+                        return stu;
+                    });
+            int pazymys = rs.getInt("pazymys");
+            stud.getPazymiai().add(pazymys);
+        }
+
+        con.close();
+        return tarpinis;
+    }
+}
+
+// ECLIPSE (SAME AS INTELLIJ) bet iš Spring pusės
+
+0. https://start.spring.io/
+0.1. WEB, DevTools, JPA, MySQL
+1. src/main/resources/application.properties :
+
+spring.application.name=restin
+server.port=8008
+server.servlet.context-path=/
+spring.datasource.url=jdbc:mysql://localhost:3306/restin (<- shemos pavadinimas) ?useSSL=false&allowPublicKeyRetrieval=true
+spring.datasource.username=pauleo
+spring.datasource.password=CicinasRytis147
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+2. pom.xml :
+<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.13</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
